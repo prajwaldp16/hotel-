@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+	.w-100{
+		width: 450px;
+		height:225px ;
+		object-fit: cover;
+	}
+</style>	
+
+
+
+
+<div class="container">
+	<div class="row">
+	   <div class="col-md-12">
+		  <h1>{{ category.name }}</h1>
+		  <hr>
+		  <div class="row">
+			 {% for item in products %}
+			 <div class="col-md-3">
+				<div class="card">
+				   <a href="{% url 'menu:productview' item.category.slug item.slug %}">
+				   <div class="card-body">
+					  <div class="category-image">
+						 <img src="{{item.product_image.url}}" alt="product image" class="w-100"/>
+					  </div>
+					  <h4 class="text-center"> {{item.name }} </h4>
+					  <spam class='float-start'> {{item.original_price  | stringformat:'d'}}.00Rs</spam>
+				   </div>
+				</a>
+				</div>
+			 </div>
+			 {% endfor %}
+		  </div>
+	   </div>
+	</div>
+
+
+   
+{% endblock content%} 

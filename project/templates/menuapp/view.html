@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+   .product-viewtag
+   {
+   background-color: red;
+   color: #fff;
+   font-size: 11px;
+   line-height: 1;
+   position: absolute;
+   text-align: center;
+   text-transform: uppercase;
+   top: 22px;
+   margin-left: 17.5rem;
+   padding: 7px 10px;
+   font-weight: 600;
+   min-width: 45px;
+   }
+   .w-100{
+		width: 50px;
+		height:330px ;
+		object-fit:cover;
+	}
+   
+   .bg-success{
+      font-size: 100%;
+   }
+   .me-3{
+      font-size: 150%;
+   }
+   .float-start{
+      font-size: 140%;
+      
+      color: white;
+
+   }
+   </style>
+<div class="py-5">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="card shadow product_data">
+                <div class="card-body">
+                <div class="row">
+                   <div class="col-md-4">
+                      {% comment %} {% if products.tag %}
+                        <label class="product-viewtag">{{ products.name }} </label>
+                      {% endif %} {% endcomment %}
+                      <img src="{{ products.product_image.url }}" class="w-100" alt="image">
+                   </div>
+                   <div class="col-md-8">
+                      <h1 class="mb-0">
+                      {{ products.name}}
+                      {% comment %} {% if products.trending %}
+                      <label style="font-size: 16px;" class="float-end badge bg-danger trending_tag">trending </label>
+                         {% endif %} {% endcomment %}
+                         </h1>
+                         <hr>
+                         <label class="me-3"  > Price : Rs {{ products.original_price | stringformat:'d' }}</label>
+                      <p class="mt-3 ">
+                       {{ products.samll_description }}
+                      </p>
+                      <hr>
+                      {% comment %} {% if products.quantity > 0 %}
+                      <label class="badge bg-success">available</label>
+                      {% else %}
+                      <label class="badge bg-dangerer">>0 Out of stock</label>
+                      {% endif %} {% endcomment %}
+                      <div class="row mt-2">
+                         <div class="col-md-3">
+                            <label for="Quantity">Quantity</label>
+                            <div class="input-group text-center mb-3" style="width: 130px;">
+                               <button class="input-group-text decrement-btn">-</button>
+                               <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
+                               <button class="input-group-text increment-btn">+</button>
+                            </div>
+                         </div>
+                         <div class="col-md-9">
+                            <br/>
+                            {% if products.quantity > 0 %}
+                            <button type="button" class="btn btn-primary me-3 float-start">Add to Cart <i class="fa fa-shopping-cart"></i></button>
+                            {% endif %}
+                            <button type="button" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-md-12">
+                   <hr>
+                   <h3>Description</h3>
+                   <p class="mt-3 ">
+                      {{ products.description }}
+                   </p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ </div>
+
+
+ {% endblock content%}  
